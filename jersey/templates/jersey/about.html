@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #A50044, #004D98);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        h1, h2 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .navbar {
+            background: #A50044;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom:10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-btn {
+    display: block;
+    width: 200px;
+    background: #ffcc00;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.contact-btn:hover {
+    background: #e6b800;
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'jersey_page' %}">Jerseys</a>
+        <a href="{% url 'accessories_page' %}">Accessories</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact Me</a>
+
+    </div>
+    <div class="container">
+        <h1>About This Web App</h1>
+        <p>Welcome to our platform! This web app, built using Python Django, is designed to help users efficiently manage and organize their items with ease. Whether you're adding new entries, editing details, or removing items, the platform provides a seamless and user-friendly experience.</p>
+
+        <h2>Our Goal</h2>
+        <p>This project was created with the aim of simplifying item management while maintaining a clean and intuitive interface. We are constantly working to improve features, enhance functionality, and ensure a smooth experience for users.</p>
+    </div>
+<button onclick="window.location.href='{% url 'contact' %}'" class="contact-btn">
+    Contact Me
+</button>
+
+</body>
+</html>

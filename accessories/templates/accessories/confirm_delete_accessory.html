@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Deletion</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #A50044, #004D98);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .confirm-btn, .cancel-btn {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .cancel-btn { background: #1565c0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Are you sure you want to delete "{{ accessory.name }}"?</h2>
+        <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}" style="width: 100px; border-radius: 10px;">
+        
+        <form method="POST" action="{% url 'delete_accessory' accessory.id %}">
+            {% csrf_token %}
+            <button type="submit" class="confirm-btn">Yes, Delete</button>
+        </form>
+
+        <br>
+
+        <a href="{% url 'accessories' %}">
+            <button class="cancel-btn">Cancel</button>
+        </a>
+    </div>
+</body>
+</html>

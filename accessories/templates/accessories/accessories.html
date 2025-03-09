@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Barcelona Accessories</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #A50044, #004D98);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .accessory-img {
+            width: 100%;
+            border-radius: 10px;
+            aspect-ratio: 3/2;
+            object-fit: contain;
+        }
+
+        .buy-btn, .edit-btn, .delete-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .buy-btn {
+            background: yellow;
+            color: black;
+        }
+        .edit-btn {
+            background-color: #1565c0;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #d32f2f;
+            color: white;
+        }
+        .buy-btn:hover {
+            background: gold;
+        }
+        .edit-btn:hover {
+            background-color: #0d47a1;
+        }
+        .delete-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        .barca-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .barca-logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #A50044, #004D98);
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #A50044, #004D98);
+        }
+                .navbar {
+            background: #A50044;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'jersey_page' %}">Jerseys</a>
+        <a href="{% url 'accessories_page' %}">Accessories</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact Me</a>
+    </div>
+    <div class="barca-banner">
+        <img src="C:\Users\COMP2425\Desktop\barca_logo.png" alt="FC Barcelona Logo" class="barca-logo">
+        <h2>FC Barcelona Accessories</h2>
+    </div>
+    
+    <div class="container">
+        {% for accessory in accessories %}
+        <div class="card">
+            <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}" class="accessory-img">
+            <h3>{{ accessory.name }}</h3>
+            <p>&#8377;{{ accessory.price }}</p>
+            <button class="buy-btn">Buy Now</button>
+            <form action="{% url 'edit_accessory' accessory.id %}" method="get">
+                <button type="submit" class="edit-btn">Edit</button>
+            </form>
+            <form action="{% url 'delete_accessory' accessory.id %}" method="get">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Accessory Name</label>
+            <input type="text" name="name" id="id_name" required>
+        </div>
+        <div class="form-group">
+            <label for="id_price">Price</label>
+            <input type="number" name="price" id="id_price" required>
+        </div>
+        <div class="form-group">
+            <label for="id_image">Upload Image</label>
+            <input type="file" name="image" id="id_image" required>
+        </div>
+        <button type="submit" class="submit-btn">Add Accessory</button>
+    </form>
+</body>
+</html>
