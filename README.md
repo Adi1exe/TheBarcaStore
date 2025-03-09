@@ -25,13 +25,13 @@ git clone https://github.com/Adi1exe/TheBarcaStore.git
 cd TheBarcaStore
 ```
 
-###2️⃣ Create & Activate Virtual Environment
+### 2️⃣ Create & Activate Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # MacOS/Linux
 venv\Scripts\activate  # Windows
 ```
-###3️⃣ Install Dependencies
+### 3️⃣ Install Dependencies
 ```bash
 pip install django
 pip install pillow
